@@ -21,97 +21,134 @@
   }), { threshold: .4 });
   $$('.title').forEach(t => io.observe(t));
 
-  // vídeos de fundo da 2ª seção e do espaço: nunca pausam
+  // vídeos de fundo (2ª seção e espaço): carregam depois da página, versão leve no celular, nunca pausam
+  const conn = navigator.connection || {};
+  const lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+  const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const smallScreen = matchMedia('(max-width: 700px)');
   const always = $$('.specials-bg, .space-bg');
-  const keep = () => always.forEach(v => v.paused && v.play().catch(() => {}));
+  const startBg = () => always.forEach(v => {
+    if (noMotion || lowData || v.getAttribute('src')) return;
+    v.src = smallScreen.matches && v.dataset.srcM ? v.dataset.srcM : v.dataset.src;
+    v.play().catch(() => {});
+  });
+  const keep = () => always.forEach(v => v.getAttribute('src') && v.paused && v.play().catch(() => {}));
   always.forEach(v => v.addEventListener('pause', keep));
-  addEventListener('load', keep);
   document.addEventListener('visibilitychange', keep);
   addEventListener('pointerdown', keep, { once: true });
-  keep();
+  const later = () => (window.requestIdleCallback || (f => setTimeout(f, 400)))(startBg, { timeout: 1500 });
+  document.readyState === 'complete' ? later() : addEventListener('load', later);
 
-  // vídeos em carrossel infinito: só o do centro toca
-  const strip = $('#strip'), cnt = $('#count');
-  const base = $$('.clip', strip), n = base.length;
-  const copy = () => base.map(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); return k; });
-  copy().forEach(k => strip.insertBefore(k, base[0]));
-  copy().forEach(k => strip.appendChild(k));
-  const clips = $$('.clip', strip), vids = clips.map(c => $('video', c));
-  const total = clips.length;
-  const mid = c => c.offsetLeft + c.offsetWidth / 2 - strip.clientWidth / 2;
-  const setW = () => clips[n].offsetLeft - clips[0].offsetLeft;
-  const go = i => strip.scrollTo({ left: mid(clips[Math.max(0, Math.min(total - 1, i))]), behavior: 'smooth' });
-  let cur = -1, raf = 0, inView = false, resume = null, idle = 0, down = false;
+  // carrossel de vídeos: infinito, movido por transform (sem rolagem nativa), com play/pause
+  const strip = $('#strip'), cnt = $('#count'), pp = $('#pp');
+  const clips = $$('.clip', strip), n = clips.length, vids = clips.map(c => $('video', c));
+  const small = matchMedia('(max-width: 700px)');
+  let pos = 0, target = 0, cur = -1, inView = false, userPaused = noMotion || lowData;
+  let step = 300, raf = 0, last = 0, drag = null;
+  const wrap = d => ((d + n / 2) % n + n) % n - n / 2;
+  const measure = () => { step = clips[0].offsetWidth * (small.matches ? 1 : 1.04); };
 
   vids.forEach((v, i) => v.addEventListener('timeupdate', () => {
     if (v.duration) clips[i].style.setProperty('--p', (v.currentTime / v.duration).toFixed(3));
   }));
 
-  const play = i => vids.forEach((v, k) => {
-    if (k === i && inView) {
+  const playActive = () => vids.forEach((v, k) => {
+    if (k === cur && inView && !userPaused) {
       if (!v.getAttribute('src')) v.src = v.dataset.src;
-      if (resume != null) {
-        const t = resume; resume = null;
-        const seek = () => { try { v.currentTime = t; } catch (e) {} };
-        v.readyState > 0 ? seek() : v.addEventListener('loadedmetadata', seek, { once: true });
-      }
       v.play().catch(() => {});
     } else v.pause();
   });
+  const setPaused = p => {
+    userPaused = p;
+    pp.setAttribute('aria-pressed', p);
+    pp.setAttribute('aria-label', p ? 'Reproduzir vídeos' : 'Pausar vídeos');
+    playActive();
+  };
+  pp.addEventListener('click', () => setPaused(!userPaused));
+  setPaused(userPaused);
 
-  const refresh = () => {
-    raf = 0;
-    const c0 = strip.scrollLeft + strip.clientWidth / 2, span = clips[0].offsetWidth * 1.4;
-    let best = 0, bd = 1e9;
+  const render = () => {
     clips.forEach((c, i) => {
-      const off = (c.offsetLeft + c.offsetWidth / 2 - c0) / span;
-      c.style.setProperty('--o', off.toFixed(3));
-      c.style.setProperty('--d', Math.min(Math.abs(off), 1).toFixed(3));
-      if (Math.abs(off) < bd) { bd = Math.abs(off); best = i; }
+      const d = wrap(i - pos), a = Math.abs(d);
+      const sc = 1 - .14 * Math.min(a, 1.6);
+      const op = Math.max(0, 1 - .5 * Math.min(a, 1)) * Math.min(1, Math.max(0, (2.4 - a) / .5));
+      const rot = small.matches ? 0 : Math.max(-1, Math.min(1, d)) * -22;
+      c.style.transform = `perspective(1200px) translate3d(${(d * step).toFixed(2)}px,0,0) rotateY(${rot.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+      c.style.opacity = op.toFixed(3);
+      c.style.zIndex = 10 - Math.round(a * 3);
+      c.style.visibility = op < .01 ? 'hidden' : 'visible';
     });
-    if (best !== cur) {
-      cur = best;
-      clips.forEach((c, k) => c.classList.toggle('on', k === best));
-      cnt.textContent = `${best % n + 1} / ${n}`;
-      play(best);
+    const idx = ((Math.round(pos) % n) + n) % n;
+    if (idx !== cur) {
+      cur = idx;
+      clips.forEach((c, k) => c.classList.toggle('on', k === idx));
+      cnt.textContent = `${idx + 1} / ${n}`;
+      playActive();
     }
   };
-  const queue = () => { if (!raf) raf = requestAnimationFrame(refresh); };
 
-  // quando a rolagem para, volta para o conjunto do meio sem que se perceba
-  const recenter = () => {
-    if (down) return;
-    if (cur < n || cur >= 2 * n) {
-      const shift = cur < n ? setW() : -setW();
-      resume = vids[cur].currentTime;
-      strip.style.scrollSnapType = 'none';
-      strip.scrollLeft += shift;
-      cur = -1; refresh();
-      requestAnimationFrame(() => { strip.style.scrollSnapType = ''; });
+  const tick = t => {
+    raf = 0;
+    const dt = Math.max(0, Math.min((t - last) / 1000, .05)); last = t;
+    if (!drag) {
+      const diff = target - pos;
+      pos = Math.abs(diff) < .0008 ? target : pos + diff * (1 - Math.exp(-dt * 8));
     }
+    render();
+    if (drag || pos !== target) raf = requestAnimationFrame(tick);
   };
-  strip.addEventListener('scroll', () => { queue(); clearTimeout(idle); idle = setTimeout(recenter, 150); }, { passive: true });
-  addEventListener('resize', () => { strip.scrollLeft = mid(clips[cur < 0 ? n : cur]); queue(); });
-  new IntersectionObserver(es => { inView = es[0].isIntersecting; play(cur); }, { threshold: .3 }).observe(strip);
-
-  $('#next').addEventListener('click', () => go(cur + 1));
-  $('#prev').addEventListener('click', () => go(cur - 1));
-  let sx = 0, sl = 0, moved = 0;
-  clips.forEach((c, i) => c.addEventListener('click', () => { if (moved < 5) go(i); }));
-  strip.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = 0; sx = e.clientX; sl = strip.scrollLeft; });
-  addEventListener('pointermove', e => {
-    if (!down) return;
-    moved = Math.abs(e.clientX - sx);
-    if (moved > 4) strip.classList.add('drag');
-    strip.scrollLeft = sl - (e.clientX - sx);
-  });
-  addEventListener('pointerup', () => {
-    if (!down) return; down = false;
-    if (strip.classList.contains('drag')) { strip.classList.remove('drag'); go(cur); }
+  const kick = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+  const move = k => { target = Math.round(target) + k; kick(); };
+  $('#next').addEventListener('click', () => move(1));
+  $('#prev').addEventListener('click', () => move(-1));
+  strip.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
   });
 
-  strip.scrollLeft = mid(clips[n]);
-  refresh();
+  // arrastar (mouse e toque)
+  strip.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    drag = { id: e.pointerId, x: e.clientX, p: pos, v: 0, lx: e.clientX, lt: e.timeStamp, moved: false };
+  });
+  strip.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 6) return;
+      drag.moved = true; strip.classList.add('drag'); strip.setPointerCapture(e.pointerId); kick();
+    }
+    pos = drag.p - dx / step;
+    const dtm = e.timeStamp - drag.lt;
+    if (dtm > 0) { drag.v = .8 * drag.v + .2 * (e.clientX - drag.lx) / dtm; drag.lx = e.clientX; drag.lt = e.timeStamp; }
+  });
+  const endDrag = e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const d = drag; drag = null; strip.classList.remove('drag');
+    if (d.moved) {
+      target = Math.round(pos - Math.max(-1.2, Math.min(1.2, d.v * 120 / step)));
+    } else {
+      const c = e.target.closest && e.target.closest('.clip');
+      const dd = c ? Math.round(wrap(clips.indexOf(c) - pos)) : 0;
+      if (dd) target = Math.round(pos) + dd;
+    }
+    kick();
+  };
+  strip.addEventListener('pointerup', endDrag);
+  strip.addEventListener('pointercancel', endDrag);
+
+  // trackpad / roda horizontal
+  let acc = 0, lock = 0;
+  strip.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    acc += e.deltaX;
+    if (Math.abs(acc) > 50 && performance.now() > lock) { move(acc > 0 ? 1 : -1); acc = 0; lock = performance.now() + 380; }
+  }, { passive: false });
+
+  new IntersectionObserver(es => { inView = es[0].isIntersecting; playActive(); }, { threshold: .3 }).observe(strip);
+  addEventListener('resize', () => { measure(); render(); });
+  measure(); render();
 
   // horário de funcionamento
   const hours = { 0: null, 1: [10, 19], 2: [10, 19], 3: [10, 19], 4: [10, 19], 5: [10, 19], 6: [7, 13] };
@@ -136,30 +173,52 @@
   $('span', live).textContent = isOpenNow ? `Aberto agora, até ${fmt(today[1])}` : txt.replace('Fechados agora. ', 'Fechado agora. ').replace(/\.$/, '');
 
 
-  // logo: sai do cartão do hero e viaja até o menu ao rolar
+  // logo: no topo fica no cartão; ao começar a rolar viaja em arco até o menu, e volta ao subir
   const fly = $('#fly'), seal = $('.seal'), navLogo = $('.logo img');
+  const BASE = 84, DOCK_ON = 70, DOCK_OFF = 36;
   const lerp = (a, b, t) => a + (b - a) * t;
-  const place = () => {
-    const sr = seal.getBoundingClientRect(), nr = navLogo.getBoundingClientRect();
-    const sy = sr.top + sr.height / 2, ny = nr.top + nr.height / 2;
-    const dist = Math.max(sy + scrollY - ny, 1);
-    const t = Math.min(Math.max(1 - (sy - ny) / dist, 0), 1);
-    const size = lerp(sr.width, nr.width, t);
-    const cx = lerp(sr.left + sr.width / 2, nr.left + nr.width / 2, t);
-    const cy = Math.max(sy, ny);
-    fly.style.width = fly.style.height = size + 'px';
-    fly.style.transform = `translate(${cx - size / 2}px,${cy - size / 2}px)`;
-    const ring = lerp(5, 0, t);
-    fly.style.boxShadow = `0 0 0 ${ring}px var(--paper), 0 10px 24px rgba(0,0,0,${lerp(.3, 0, t)})`;
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const stateOf = (el, ring, sh) => {
+    const r = el.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2, s: r.width, ring, sh, rot: 0 };
+  };
+  let docked = scrollY > DOCK_ON, anim = null, shown = null, running = 0;
+  const draw = st => {
+    const k = st.s / BASE;
+    fly.style.transform = `translate3d(${(st.x - BASE / 2).toFixed(2)}px,${(st.y - BASE / 2).toFixed(2)}px,0) rotate(${st.rot.toFixed(2)}deg) scale(${k.toFixed(4)})`;
+    fly.style.boxShadow = `0 0 0 ${(st.ring / k).toFixed(2)}px var(--paper), 0 10px 24px rgba(0,0,0,${st.sh.toFixed(3)})`;
     fly.style.opacity = 1;
   };
-  let fr = 0;
-  const loopPlace = () => { if (!fr) fr = requestAnimationFrame(() => { fr = 0; place(); }); };
-  addEventListener('scroll', loopPlace, { passive: true });
-  addEventListener('resize', loopPlace);
-  addEventListener('load', place);
-  document.fonts && document.fonts.ready.then(place);
-  place();
+  const frame = now => {
+    running = 0;
+    const to = docked ? stateOf(navLogo, 0, 0) : stateOf(seal, 5, .3);
+    let st = to;
+    if (anim) {
+      const p = Math.min((now - anim.t0) / anim.dur, 1), e = ease(p), w = Math.sin(Math.PI * e);
+      st = {
+        x: lerp(anim.from.x, to.x, e) + anim.swing * w, y: lerp(anim.from.y, to.y, e),
+        s: lerp(anim.from.s, to.s, e), ring: lerp(anim.from.ring, to.ring, e), sh: lerp(anim.from.sh, to.sh, e),
+        rot: anim.spin * w
+      };
+      if (p >= 1) anim = null;
+    }
+    shown = st; draw(st);
+    if (anim) request();
+  };
+  const request = () => { if (!running) running = requestAnimationFrame(frame); };
+  addEventListener('scroll', () => {
+    const want = docked ? scrollY > DOCK_OFF : scrollY > DOCK_ON;
+    if (want !== docked) {
+      docked = want;
+      const swing = Math.min(54, innerWidth * .1);
+      anim = { t0: performance.now(), dur: noMotion ? 1 : 850, from: shown || stateOf(seal, 5, .3), swing: want ? swing : -swing, spin: want ? -14 : 14 };
+    }
+    request();
+  }, { passive: true });
+  addEventListener('resize', request);
+  addEventListener('load', request);
+  document.fonts && document.fonts.ready.then(request);
+  request();
 
   // destaca no menu a seção visível
   const navLinks = $$('.links a[href^="#"]:not(.navcta)');

@@ -6,14 +6,16 @@
 <title>Up Café · Seu UP começa aqui</title>
 <meta name="description" content="Up Café: café na hora, croissants, doces da casa, almoço e um jardim para ficar.">
 <meta name="theme-color" content="#3b2a22">
-<link rel="icon" href="assets/img/logo.jpg">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Oranienbaum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="backdrop" aria-hidden="true"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="heroClip" clipPathUnits="objectBoundingBox"><path d="M0 0H1V.93C.86 .985 .72 1 .55 .975C.38 .95 .2 .9 0 .955Z"/></clipPath></defs></svg>
 
 <div class="site">
@@ -24,7 +26,7 @@
       <a href="#fresquinho">Fresquinho</a>
       <a href="#momentos">Momentos</a>
     </nav>
-    <a href="#topo" class="logo" aria-label="Up Café, início"><img src="assets/img/logo.jpg" alt="Up Café"></a>
+    <a href="#topo" class="logo" aria-label="Up Café, início"><img src="assets/img/logo-256.webp" alt="Up Café"></a>
     <nav class="links right">
       <a href="#espaco">Espaço</a>
       <a href="#visite">Horários</a>
@@ -46,13 +48,13 @@
     <!-- HERO -->
     <section class="hero">
       <div class="mosaic">
-        <img src="assets/img/brownie.jpg" alt="">
-        <img src="assets/img/croissants.jpg" alt="">
-        <img src="assets/img/waffle.jpg" alt="">
-        <img src="assets/img/banana.jpg" alt="">
+        <img src="assets/img/brownie-900.webp" srcset="assets/img/brownie-480.webp 480w, assets/img/brownie-900.webp 900w" sizes="(max-width:900px) 50vw, 25vw" alt="" decoding="async">
+        <img src="assets/img/croissants-900.webp" srcset="assets/img/croissants-480.webp 480w, assets/img/croissants-900.webp 900w" sizes="(max-width:900px) 50vw, 25vw" alt="" decoding="async">
+        <img src="assets/img/waffle-900.webp" srcset="assets/img/waffle-480.webp 480w, assets/img/waffle-900.webp 900w" sizes="(max-width:900px) 50vw, 25vw" alt="" decoding="async">
+        <img src="assets/img/banana-900.webp" srcset="assets/img/banana-480.webp 480w, assets/img/banana-900.webp 900w" sizes="(max-width:900px) 50vw, 25vw" alt="" decoding="async">
       </div>
       <div class="paper hero-card">
-        <img class="seal" src="assets/img/logo.jpg" alt="">
+        <img class="seal" src="assets/img/logo-256.webp" alt="">
         <h1>Seu UP começa aqui</h1>
         <i class="rule" aria-hidden="true"></i>
         <p>Café na hora, croissants quentes e um jardim para ficar mais um pouco.</p>
@@ -62,9 +64,7 @@
 
     <!-- O QUE NOS FAZ ESPECIAIS -->
     <section class="specials">
-      <video class="specials-bg" autoplay muted loop playsinline preload="metadata" poster="assets/video/espaco.jpg">
-        <source src="assets/video/espaco.mp4" type="video/mp4">
-      </video>
+      <video class="specials-bg" muted loop playsinline preload="none" poster="assets/video/espaco.webp" data-src="assets/video/espaco.mp4" data-src-m="assets/video/espaco-m.mp4"></video>
       <div class="specials-in">
         <h2 class="title big">O que nos<br>faz especiais</h2>
         <ul class="icons">
@@ -97,19 +97,19 @@
       <h2 class="title">Nossos destaques</h2>
       <div class="pairs">
         <div class="pair">
-          <img src="assets/img/croissants.jpg" alt="Croissants recheados" loading="lazy">
+          <img src="assets/img/croissants-900.webp" srcset="assets/img/croissants-480.webp 480w, assets/img/croissants-900.webp 900w" sizes="(max-width:560px) 92vw, 280px" alt="Croissants recheados" width="270" height="270" loading="lazy" decoding="async">
           <div class="paper tile"><h3>Croissants recheados</h3><p>Ovos mexidos com bacon, frango com folhas, tomate confit com queijo. Todos na massa folhada do dia.</p></div>
         </div>
         <div class="pair">
-          <img src="assets/img/banana.jpg" alt="Croissant de banana com doce de leite" loading="lazy">
+          <img src="assets/img/banana-900.webp" srcset="assets/img/banana-480.webp 480w, assets/img/banana-900.webp 900w" sizes="(max-width:560px) 92vw, 280px" alt="Croissant de banana com doce de leite" width="270" height="270" loading="lazy" decoding="async">
           <div class="paper tile"><h3>Croissant de banana</h3><p>Banana com canela, queijo derretido e fios de doce de leite por cima.</p></div>
         </div>
         <div class="pair flip">
-          <img src="assets/img/waffle.jpg" alt="Waffle de morango com chocolate" loading="lazy">
+          <img src="assets/img/waffle-900.webp" srcset="assets/img/waffle-480.webp 480w, assets/img/waffle-900.webp 900w" sizes="(max-width:560px) 92vw, 280px" alt="Waffle de morango com chocolate" width="270" height="270" loading="lazy" decoding="async">
           <div class="paper tile"><h3>Waffle de morango</h3><p>Camadas de morango fresco, creme de chocolate e lascas de chocolate ao leite.</p></div>
         </div>
         <div class="pair flip">
-          <img src="assets/img/brownie.jpg" alt="Brownie com sorvete" loading="lazy">
+          <img src="assets/img/brownie-900.webp" srcset="assets/img/brownie-480.webp 480w, assets/img/brownie-900.webp 900w" sizes="(max-width:560px) 92vw, 280px" alt="Brownie com sorvete" width="270" height="270" loading="lazy" decoding="async">
           <div class="paper tile"><h3>Brownie com sorvete</h3><p>Brownie úmido, servido com uma bola de sorvete de creme derretendo por cima.</p></div>
         </div>
       </div>
@@ -122,32 +122,35 @@
 
       <div class="bake">
         <span class="ghost g1">Croissant</span>
-        <img class="disc d1" src="assets/img/banana.jpg" alt="Croissant de banana" loading="lazy">
+        <img class="disc d1" src="assets/img/banana-900.webp" srcset="assets/img/banana-480.webp 480w, assets/img/banana-900.webp 900w" sizes="(max-width:700px) 56vw, 320px" width="320" height="320" decoding="async" alt="Croissant de banana" loading="lazy">
         <svg class="orbit o1" viewBox="0 0 700 420" aria-hidden="true">
           <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(-8 350 215)"/>
           <path id="arc1" d="M240 335C330 385 470 390 590 340" fill="none" stroke="none"/>
           <text><textPath href="#arc1" startOffset="4%">Banana, canela e doce de leite</textPath></text>
         </svg>
+        <p class="cap">Banana, canela e doce de leite</p>
       </div>
 
       <div class="bake rev">
         <span class="ghost g2">Waffle</span>
-        <img class="disc d2" src="assets/img/waffle.jpg" alt="Waffle de morango" loading="lazy">
+        <img class="disc d2" src="assets/img/waffle-900.webp" srcset="assets/img/waffle-480.webp 480w, assets/img/waffle-900.webp 900w" sizes="(max-width:700px) 56vw, 320px" width="320" height="320" decoding="async" alt="Waffle de morango" loading="lazy">
         <svg class="orbit o2" viewBox="0 0 700 420" aria-hidden="true">
           <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(8 350 215)"/>
           <path id="arc2" d="M110 340C230 390 370 385 460 335" fill="none" stroke="none"/>
           <text><textPath href="#arc2" startOffset="6%">Morango e chocolate ao leite</textPath></text>
         </svg>
+        <p class="cap">Morango e chocolate ao leite</p>
       </div>
 
       <div class="bake">
         <span class="ghost g3">Brownie</span>
-        <img class="disc d3" src="assets/img/brownie.jpg" alt="Brownie com sorvete" loading="lazy">
+        <img class="disc d3" src="assets/img/brownie-900.webp" srcset="assets/img/brownie-480.webp 480w, assets/img/brownie-900.webp 900w" sizes="(max-width:700px) 56vw, 320px" width="320" height="320" decoding="async" alt="Brownie com sorvete" loading="lazy">
         <svg class="orbit o3" viewBox="0 0 700 420" aria-hidden="true">
           <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(-8 350 215)"/>
           <path id="arc3" d="M240 335C330 385 470 390 590 340" fill="none" stroke="none"/>
           <text><textPath href="#arc3" startOffset="4%">Com sorvete de creme</textPath></text>
         </svg>
+        <p class="cap">Com sorvete de creme</p>
       </div>
     </section>
 
@@ -155,25 +158,27 @@
     <section class="moments" id="momentos">
       <h2 class="title">Por dentro do Up</h2>
       <p class="sub">Um pouco do que acontece no balcão, nas mesas e no jardim.</p>
-      <div class="strip" id="strip">
-        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/espresso.mp4" poster="assets/video/espresso.jpg"></video></div><div class="bar"><i></i></div><figcaption>O café na xícara</figcaption></figure>
-        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/irish.mp4" poster="assets/video/irish.jpg"></video></div><div class="bar"><i></i></div><figcaption>Receitas de balcão</figcaption></figure>
-        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/trabalho.mp4" poster="assets/video/trabalho.jpg"></video></div><div class="bar"><i></i></div><figcaption>Trabalhe com sabor</figcaption></figure>
-        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/jardim.mp4" poster="assets/video/jardim.jpg"></video></div><div class="bar"><i></i></div><figcaption>O jardim</figcaption></figure>
-        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/copo.mp4" poster="assets/video/copo.jpg"></video></div><div class="bar"><i></i></div><figcaption>Detalhes do balcão</figcaption></figure>
+      <div class="strip" id="strip" tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Vídeos do Up Café">
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/espresso.mp4" poster="assets/video/espresso.webp"></video></div><div class="bar"><i></i></div><figcaption>O café na xícara</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/irish.mp4" poster="assets/video/irish.webp"></video></div><div class="bar"><i></i></div><figcaption>Receitas de balcão</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/trabalho.mp4" poster="assets/video/trabalho.webp"></video></div><div class="bar"><i></i></div><figcaption>Trabalhe com sabor</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/jardim.mp4" poster="assets/video/jardim.webp"></video></div><div class="bar"><i></i></div><figcaption>O jardim</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/copo.mp4" poster="assets/video/copo.webp"></video></div><div class="bar"><i></i></div><figcaption>Detalhes do balcão</figcaption></figure>
       </div>
       <div class="arrows">
         <button id="prev" aria-label="Anterior">‹</button>
-        <span class="count" id="count">1 / 5</span>
+        <button id="pp" class="pp" aria-label="Pausar vídeos" aria-pressed="false">
+          <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1"/><rect x="13.8" y="5" width="4.2" height="14" rx="1"/></svg>
+          <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a.6.6 0 0 0 .9.5l11-6.8a.6.6 0 0 0 0-1L8.9 4.7a.6.6 0 0 0-.9.5z"/></svg>
+        </button>
         <button id="next" aria-label="Próximo">›</button>
+        <span class="count" id="count">1 / 5</span>
       </div>
     </section>
 
     <!-- ESPAÇO -->
     <section class="space" id="espaco">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/jardim.jpg" class="space-bg">
-        <source src="assets/video/jardim.mp4" type="video/mp4">
-      </video>
+      <video class="space-bg" muted loop playsinline preload="none" poster="assets/video/jardim.webp" data-src="assets/video/jardim.mp4" data-src-m="assets/video/jardim-m.mp4"></video>
       <div class="paper space-card">
         <h2>Um lugar para ficar</h2>
         <p>Teto de madeira com iluminação linear, luz baixa e quente por dentro. Do lado de fora, o jardim com guarda-sóis e cadeiras laranja.</p>
@@ -190,7 +195,7 @@
           <li data-d="0" class="off"><span>Domingo</span><b>Fechado</b></li>
         </ul>
         <div class="paper where">
-          <img class="seal2" src="assets/img/logo.jpg" alt="">
+          <img class="seal2" src="assets/img/logo-256.webp" alt="">
           <h3>Como chegar</h3>
           <i class="rule" aria-hidden="true"></i>
           <p id="openText">—</p>
@@ -201,13 +206,13 @@
   </main>
 
   <footer class="footer">
-    <img src="assets/img/logo.jpg" alt="">
+    <img src="assets/img/logo-256.webp" alt="">
     <p>Up Café · Seu UP começa aqui</p>
     <small>Prévia de proposta de site, <span id="year"></span></small>
   </footer>
 </div>
 
-<a class="fly" id="fly" href="#topo" aria-label="Up Café, início"><img src="assets/img/logo.jpg" alt=""></a>
+<a class="fly" id="fly" href="#topo" aria-label="Up Café, início"><img src="assets/img/logo-256.webp" alt=""></a>
 
 <script src="js/main.js"></script>
 </body>
