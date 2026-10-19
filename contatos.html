@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Up Café · Contatos</title>
+<meta name="description" content="Contatos do Up Café: Instagram @upcafegyn, localização e horários de funcionamento.">
+<meta name="theme-color" content="#241812">
+<meta property="og:title" content="Up Café · Contatos">
+<meta property="og:description" content="Seu UP começa aqui. Instagram, localização e horários.">
+<meta property="og:image" content="assets/img/logo-256.webp">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Oranienbaum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/contatos.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <video class="bg-video" muted loop playsinline preload="none" poster="assets/video/espaco.webp" data-src="assets/video/espaco.mp4" data-src-m="assets/video/espaco-m.mp4"></video>
+</div>
+
+<main class="card">
+  <header class="head">
+    <img class="avatar" src="assets/img/logo-256.webp" alt="Logo do Up Café" width="104" height="104">
+    <h1>Up Café</h1>
+    <a class="handle" href="https://www.instagram.com/upcafegyn/" target="_blank" rel="noopener">@upcafegyn</a>
+    <p class="slogan"><span>Seu UP começa aqui</span></p>
+    <p class="live" id="live"><i></i><span>—</span></p>
+  </header>
+
+  <nav class="list" aria-label="Contatos">
+
+    <a class="item primary" id="instagram" href="https://www.instagram.com/upcafegyn/" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></span>
+      <span class="tx"><b>Instagram</b><small>@upcafegyn</small></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="item" id="whatsapp" href="#" target="_blank" rel="noopener" hidden>
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l1.2-4.1A8 8 0 1 1 8.2 19z"/><path d="M9.2 8.8c.2 2.6 2.4 4.9 5 5.2l1.2-1.2-1.8-1-.8.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.8-1-1.8z"/></svg></span>
+      <span class="tx"><b>WhatsApp</b><small>Fale com a gente</small></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="item" id="maps" href="https://share.google/fLKqauJnGn5Yjc4wM" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+      <span class="tx"><b>Como chegar</b><small>Abrir no Google Maps</small></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <div class="item-wrap" id="hoursBox">
+      <button class="item" id="hoursBtn" type="button" aria-expanded="false" aria-controls="hoursPanel">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+        <span class="tx"><b>Horários</b><small id="hoursHint">Ver horários de funcionamento</small></span>
+        <span class="go chev" aria-hidden="true">⌄</span>
+      </button>
+      <div class="panel" id="hoursPanel">
+        <ul class="hours" id="hoursList">
+          <li data-d="1,2,3,4,5"><span>Segunda a sexta</span><b>10:00 – 19:00</b></li>
+          <li data-d="6"><span>Sábado</span><b>07:00 – 13:00</b></li>
+          <li data-d="0" class="off"><span>Domingo</span><b>Fechado</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="item" id="telefone" href="#" hidden>
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M6.5 4h3l1.5 4-2 1.3a11 11 0 0 0 5.7 5.7L16 13l4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4z"/></svg></span>
+      <span class="tx"><b>Telefone</b><small></small></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="item" id="email" href="#" hidden>
+      <span class="ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span class="tx"><b>E-mail</b><small></small></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="item" id="site" href="index.html">
+      <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5z"/></svg></span>
+      <span class="tx"><b>Conheça o site</b><small>Destaques, espaço e vídeos</small></span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <footer class="foot">
+    <p>Up Café · Seu UP começa aqui</p>
+  </footer>
+</main>
+
+<script src="js/contatos.js"></script>
+</body>
+</html>
