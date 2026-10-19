@@ -83,6 +83,7 @@
       cur = idx;
       clips.forEach((c, k) => c.classList.toggle('on', k === idx));
       cnt.textContent = `${idx + 1} / ${n}`;
+      $('.frame', clips[idx]).appendChild(pp);
       playActive();
     }
   };
