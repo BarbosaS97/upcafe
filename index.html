@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Up Café · Seu UP começa aqui</title>
+<meta name="description" content="Up Café: café na hora, croissants, doces da casa, almoço e um jardim para ficar.">
+<meta name="theme-color" content="#3b2a22">
+<link rel="icon" href="assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Oranienbaum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="heroClip" clipPathUnits="objectBoundingBox"><path d="M0 0H1V.93C.86 .985 .72 1 .55 .975C.38 .95 .2 .9 0 .955Z"/></clipPath></defs></svg>
+
+<div class="site">
+
+  <header class="nav" id="nav">
+    <nav class="links left">
+      <a href="#destaques">Destaques</a>
+      <a href="#fresquinho">Fresquinho</a>
+      <a href="#momentos">Momentos</a>
+    </nav>
+    <a href="#topo" class="logo" aria-label="Up Café, início"><img src="assets/img/logo.jpg" alt="Up Café"></a>
+    <nav class="links right">
+      <a href="#espaco">Espaço</a>
+      <a href="#visite">Horários</a>
+      <a href="#visite" class="navcta">Como chegar</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <a href="#destaques">Destaques</a>
+    <a href="#fresquinho">Fresquinho</a>
+    <a href="#momentos">Momentos</a>
+    <a href="#espaco">Espaço</a>
+    <a href="#visite">Horários</a>
+  </div>
+
+  <main id="topo">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="mosaic">
+        <img src="assets/img/brownie.jpg" alt="">
+        <img src="assets/img/croissants.jpg" alt="">
+        <img src="assets/img/waffle.jpg" alt="">
+        <img src="assets/img/banana.jpg" alt="">
+      </div>
+      <div class="paper hero-card">
+        <img class="seal" src="assets/img/logo.jpg" alt="">
+        <h1>Seu UP começa aqui</h1>
+        <i class="rule" aria-hidden="true"></i>
+        <p>Café na hora, croissants quentes e um jardim para ficar mais um pouco.</p>
+        <p class="live" id="heroStatus"><i></i><span>—</span></p>
+      </div>
+    </section>
+
+    <!-- O QUE NOS FAZ ESPECIAIS -->
+    <section class="specials">
+      <video class="specials-bg" autoplay muted loop playsinline preload="metadata" poster="assets/video/espaco.jpg">
+        <source src="assets/video/espaco.mp4" type="video/mp4">
+      </video>
+      <div class="specials-in">
+        <h2 class="title big">O que nos<br>faz especiais</h2>
+        <ul class="icons">
+          <li>
+            <span class="ring"><svg viewBox="0 0 48 48"><path d="M10 20h24v8a10 10 0 0 1-10 10h-4a10 10 0 0 1-10-10z"/><path d="M34 22h3a4 4 0 0 1 0 8h-3"/><path d="M17 8c-2 3 2 4 0 7M24 8c-2 3 2 4 0 7"/></svg></span>
+            <b>Café na hora</b>
+            <small>Extraído na máquina, na sua frente.</small>
+          </li>
+          <li>
+            <span class="ring"><svg viewBox="0 0 48 48"><path d="M6 32c2-12 10-18 18-18s16 6 18 18c-4 0-6-3-8-5-2 3-6 5-10 5s-8-2-10-5c-2 2-4 5-8 5z"/><path d="M18 18l3 9M30 18l-3 9M24 15v12"/></svg></span>
+            <b>Massas folhadas</b>
+            <small>Croissants dourados, doces e salgados.</small>
+          </li>
+          <li>
+            <span class="ring"><svg viewBox="0 0 48 48"><path d="M10 38C8 20 18 9 38 8c1 20-8 30-26 30z"/><path d="M10 38C16 28 24 20 32 15"/></svg></span>
+            <b>Jardim</b>
+            <small>Mesas ao ar livre, entre as plantas.</small>
+          </li>
+          <li>
+            <span class="ring"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><path d="M24 14v10l7 4"/></svg></span>
+            <b>De segunda a sábado</b>
+            <small>Veja os horários mais abaixo.</small>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DESTAQUES -->
+    <section class="featured" id="destaques">
+      <h2 class="title">Nossos destaques</h2>
+      <div class="pairs">
+        <div class="pair">
+          <img src="assets/img/croissants.jpg" alt="Croissants recheados" loading="lazy">
+          <div class="paper tile"><h3>Croissants recheados</h3><p>Ovos mexidos com bacon, frango com folhas, tomate confit com queijo. Todos na massa folhada do dia.</p></div>
+        </div>
+        <div class="pair">
+          <img src="assets/img/banana.jpg" alt="Croissant de banana com doce de leite" loading="lazy">
+          <div class="paper tile"><h3>Croissant de banana</h3><p>Banana com canela, queijo derretido e fios de doce de leite por cima.</p></div>
+        </div>
+        <div class="pair flip">
+          <img src="assets/img/waffle.jpg" alt="Waffle de morango com chocolate" loading="lazy">
+          <div class="paper tile"><h3>Waffle de morango</h3><p>Camadas de morango fresco, creme de chocolate e lascas de chocolate ao leite.</p></div>
+        </div>
+        <div class="pair flip">
+          <img src="assets/img/brownie.jpg" alt="Brownie com sorvete" loading="lazy">
+          <div class="paper tile"><h3>Brownie com sorvete</h3><p>Brownie úmido, servido com uma bola de sorvete de creme derretendo por cima.</p></div>
+        </div>
+      </div>
+      <a href="#visite" class="btn">Venha nos visitar</a>
+    </section>
+
+    <!-- FRESQUINHO -->
+    <section class="fresh" id="fresquinho">
+      <h2 class="title">Doces e massas, todo dia</h2>
+
+      <div class="bake">
+        <span class="ghost g1">Croissant</span>
+        <img class="disc d1" src="assets/img/banana.jpg" alt="Croissant de banana" loading="lazy">
+        <svg class="orbit o1" viewBox="0 0 700 420" aria-hidden="true">
+          <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(-8 350 215)"/>
+          <path id="arc1" d="M240 335C330 385 470 390 590 340" fill="none" stroke="none"/>
+          <text><textPath href="#arc1" startOffset="4%">Banana, canela e doce de leite</textPath></text>
+        </svg>
+      </div>
+
+      <div class="bake rev">
+        <span class="ghost g2">Waffle</span>
+        <img class="disc d2" src="assets/img/waffle.jpg" alt="Waffle de morango" loading="lazy">
+        <svg class="orbit o2" viewBox="0 0 700 420" aria-hidden="true">
+          <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(8 350 215)"/>
+          <path id="arc2" d="M110 340C230 390 370 385 460 335" fill="none" stroke="none"/>
+          <text><textPath href="#arc2" startOffset="6%">Morango e chocolate ao leite</textPath></text>
+        </svg>
+      </div>
+
+      <div class="bake">
+        <span class="ghost g3">Brownie</span>
+        <img class="disc d3" src="assets/img/brownie.jpg" alt="Brownie com sorvete" loading="lazy">
+        <svg class="orbit o3" viewBox="0 0 700 420" aria-hidden="true">
+          <ellipse cx="350" cy="215" rx="330" ry="150" transform="rotate(-8 350 215)"/>
+          <path id="arc3" d="M240 335C330 385 470 390 590 340" fill="none" stroke="none"/>
+          <text><textPath href="#arc3" startOffset="4%">Com sorvete de creme</textPath></text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- MOMENTOS -->
+    <section class="moments" id="momentos">
+      <h2 class="title">Por dentro do Up</h2>
+      <p class="sub">Um pouco do que acontece no balcão, nas mesas e no jardim.</p>
+      <div class="strip" id="strip">
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/espresso.mp4" poster="assets/video/espresso.jpg"></video></div><div class="bar"><i></i></div><figcaption>O café na xícara</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/irish.mp4" poster="assets/video/irish.jpg"></video></div><div class="bar"><i></i></div><figcaption>Receitas de balcão</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/trabalho.mp4" poster="assets/video/trabalho.jpg"></video></div><div class="bar"><i></i></div><figcaption>Trabalhe com sabor</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/jardim.mp4" poster="assets/video/jardim.jpg"></video></div><div class="bar"><i></i></div><figcaption>O jardim</figcaption></figure>
+        <figure class="clip"><div class="frame"><video muted loop playsinline preload="none" data-src="assets/video/copo.mp4" poster="assets/video/copo.jpg"></video></div><div class="bar"><i></i></div><figcaption>Detalhes do balcão</figcaption></figure>
+      </div>
+      <div class="arrows">
+        <button id="prev" aria-label="Anterior">‹</button>
+        <span class="count" id="count">1 / 5</span>
+        <button id="next" aria-label="Próximo">›</button>
+      </div>
+    </section>
+
+    <!-- ESPAÇO -->
+    <section class="space" id="espaco">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/video/jardim.jpg" class="space-bg">
+        <source src="assets/video/jardim.mp4" type="video/mp4">
+      </video>
+      <div class="paper space-card">
+        <h2>Um lugar para ficar</h2>
+        <p>Teto de madeira com iluminação linear, luz baixa e quente por dentro. Do lado de fora, o jardim com guarda-sóis e cadeiras laranja.</p>
+      </div>
+    </section>
+
+    <!-- VISITE -->
+    <section class="visit" id="visite">
+      <h2 class="title">Venha nos visitar</h2>
+      <div class="visit-grid">
+        <ul class="hours" id="hoursList">
+          <li data-d="1,2,3,4,5"><span>Segunda a sexta</span><b>10:00 – 19:00</b></li>
+          <li data-d="6"><span>Sábado</span><b>07:00 – 13:00</b></li>
+          <li data-d="0" class="off"><span>Domingo</span><b>Fechado</b></li>
+        </ul>
+        <div class="paper where">
+          <img class="seal2" src="assets/img/logo.jpg" alt="">
+          <h3>Como chegar</h3>
+          <i class="rule" aria-hidden="true"></i>
+          <p id="openText">—</p>
+          <a class="btn" href="https://share.google/fLKqauJnGn5Yjc4wM" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/img/logo.jpg" alt="">
+    <p>Up Café · Seu UP começa aqui</p>
+    <small>Prévia de proposta de site, <span id="year"></span></small>
+  </footer>
+</div>
+
+<a class="fly" id="fly" href="#topo" aria-label="Up Café, início"><img src="assets/img/logo.jpg" alt=""></a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
