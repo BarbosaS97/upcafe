@@ -58,20 +58,23 @@
   $$('#hoursList li').find(li => li.dataset.d.split(',').includes(String(d)))?.classList.add('today');
 
   const today = hours[d];
+  const dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   const open = !!(today && h >= today[0] && h < today[1]);
-  let txt;
+  let detail;
   if (open) {
-    txt = `Aberto agora, até ${fmt(today[1])}`;
+    detail = `até ${fmt(today[1])}`;
   } else {
     let nd = today && h < today[0] ? d : (d + 1) % 7, add = nd === d ? 0 : 1;
     while (!hours[nd]) { nd = (nd + 1) % 7; add++; }
     const when = add === 0 ? 'hoje' : add === 1 ? 'amanhã' : names[nd];
-    txt = `Fechado agora, abrimos ${when} às ${fmt(hours[nd][0])}`;
+    detail = `abre ${when} às ${fmt(hours[nd][0])}`;
   }
+  const state = open ? 'Aberto' : 'Fechado';
   const live = $('#live');
   live.classList.toggle('closed', !open);
-  $('span', live).textContent = txt;
-  $('#hoursHint').textContent = txt;
+  $('.day', live).textContent = dayNames[d];
+  $('.st', live).innerHTML = `<em>${state}</em> ${detail}`;
+  $('#hoursHint').textContent = `${state} ${detail}`;
 
   // abre e fecha os horários
   const btn = $('#hoursBtn');

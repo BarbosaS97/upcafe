@@ -40,9 +40,12 @@ h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-sp
 .slogan span{opacity:.85}
 .slogan::before,.slogan::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--caramel))}
 .slogan::after{transform:scaleX(-1)}
-.live{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:7px 16px;background:rgba(36,24,18,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(239,220,193,.3);border-radius:99px;font-size:.8rem;letter-spacing:.02em}
-.live i{width:7px;height:7px;border-radius:50%;background:#6b9a54;flex:none}
-.live.closed i{background:#b0624a}
+.live{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px;font-size:.92rem;text-shadow:0 2px 14px rgba(20,12,8,.8)}
+.live .day{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.2em;font-size:.95rem;color:var(--paper)}
+.live i{width:1px;height:16px;background:rgba(239,220,193,.5);flex:none}
+.live .st{opacity:.9}
+.live em{font-style:normal;font-weight:500;color:var(--paper)}
+.live.closed em{color:var(--caramel);filter:brightness(1.25)}
 
 /* botões */
 .list{display:grid;gap:12px}
@@ -107,7 +110,8 @@ h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-sp
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:360px){.item{grid-template-columns:40px 1fr auto;gap:12px;padding:12px 14px}.ic{width:40px;height:40px}.ic svg{width:20px;height:20px}.tx b{font-size:.95rem;letter-spacing:.06em}.tx small{font-size:.8rem}.slogan::before,.slogan::after{width:22px}.slogan{gap:10px}}
 @media (max-width:340px){.slogan::before,.slogan::after{display:none}}
-@media (max-width:300px){.tx b{letter-spacing:.03em}.live{font-size:.74rem}}
+@media (max-width:340px){.live{gap:10px;font-size:.82rem}.live .day{letter-spacing:.12em;font-size:.85rem}}
+@media (max-width:300px){.tx b{letter-spacing:.03em}}
 /* telas baixas (celular deitado, janelas pequenas): topo mais compacto */
 @media (max-height:560px){body{padding-top:20px}.avatar{width:64px;height:64px;border-width:3px;margin-bottom:14px}.head{margin-bottom:18px}.slogan{margin-top:10px}.live{margin-top:12px}.list{gap:8px}.item{padding:9px 14px}.item.primary{padding:12px 14px}.foot{margin-top:22px}}
 @media (max-height:560px) and (min-width:560px){.card{width:min(760px,100%)}.list{grid-template-columns:1fr 1fr}.item-wrap,.item.primary{grid-column:auto}.hours{font-size:.9rem}}
