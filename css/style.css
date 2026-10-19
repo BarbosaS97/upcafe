@@ -233,3 +233,7 @@ ul{list-style:none}
 .links a.navcta::before{right:14px;height:70%;opacity:.4}
 .btn:hover::before,.links a.navcta:hover::before{opacity:.95;transform:translateY(-50%) scale(1.12) rotate(-6deg)}
 .where .btn{padding-right:70px}
+
+/* botão transparente (Nossos destaques) */
+.featured .btn{background:transparent;color:var(--cream);box-shadow:none;border:1px solid rgba(239,220,193,.55);transition:background .35s,border-color .35s}
+.featured .btn:hover{background:rgba(239,220,193,.1);border-color:var(--cream)}

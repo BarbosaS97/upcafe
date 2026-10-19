@@ -21,26 +21,16 @@
   }), { threshold: .4 });
   $$('.title').forEach(t => io.observe(t));
 
-  // vídeos: só carregam e tocam quando estão visíveis
-  const vo = new IntersectionObserver(es => es.forEach(e => {
-    const v = e.target;
-    if (e.isIntersecting) {
-      if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src;
-      v.play().catch(() => {});
-    } else v.pause();
-  }), { threshold: .35 });
-  $$('.space-bg').forEach(v => vo.observe(v));
-
-  // vídeos em carrossel infinito: só o do centro toca
-  // vídeo da segunda seção: nunca pausa
-  const sbg = $('.specials-bg');
-  const keep = () => sbg.paused && sbg.play().catch(() => {});
-  sbg.addEventListener('pause', keep);
+  // vídeos de fundo da 2ª seção e do espaço: nunca pausam
+  const always = $$('.specials-bg, .space-bg');
+  const keep = () => always.forEach(v => v.paused && v.play().catch(() => {}));
+  always.forEach(v => v.addEventListener('pause', keep));
   addEventListener('load', keep);
   document.addEventListener('visibilitychange', keep);
   addEventListener('pointerdown', keep, { once: true });
   keep();
 
+  // vídeos em carrossel infinito: só o do centro toca
   const strip = $('#strip'), cnt = $('#count');
   const base = $$('.clip', strip), n = base.length;
   const copy = () => base.map(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); return k; });
