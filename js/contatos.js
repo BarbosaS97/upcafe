@@ -58,7 +58,7 @@
   $$('#hoursList li').find(li => li.dataset.d.split(',').includes(String(d)))?.classList.add('today');
 
   const today = hours[d];
-  const dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  const dayNames = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
   const open = !!(today && h >= today[0] && h < today[1]);
   let detail;
   if (open) {

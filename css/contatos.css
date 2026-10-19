@@ -58,7 +58,7 @@ h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-sp
 .tx{min-width:0}
 .tx b,.tx small{overflow-wrap:anywhere}
 .tx small{display:block;font-size:.84rem;opacity:.75;line-height:1.4}
-.go{font-size:1.2rem;color:var(--caramel);transition:transform .35s,color .35s}
+.go{display:grid;place-items:center;width:22px;height:22px;color:var(--caramel);transition:transform .35s,color .35s}
 .item:hover{background:var(--caramel);color:var(--paper);transform:translateY(-3px)}
 .item:hover::before{background-image:url(../assets/img/logo-mark-cream.png);opacity:.3;transform:translateY(-50%) rotate(0) scale(1.06)}
 .item:hover .ic{background:var(--paper);border-color:var(--paper)}
@@ -82,7 +82,8 @@ h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-sp
 
 /* horários que abrem */
 .item-wrap{border-radius:6px}
-.chev{display:inline-block;transition:transform .4s}
+.go svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chev{transition:transform .4s}
 #hoursBtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
 #hoursBtn[aria-expanded="true"]{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
@@ -110,7 +111,8 @@ h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-sp
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:360px){.item{grid-template-columns:40px 1fr auto;gap:12px;padding:12px 14px}.ic{width:40px;height:40px}.ic svg{width:20px;height:20px}.tx b{font-size:.95rem;letter-spacing:.06em}.tx small{font-size:.8rem}.slogan::before,.slogan::after{width:22px}.slogan{gap:10px}}
 @media (max-width:340px){.slogan::before,.slogan::after{display:none}}
-@media (max-width:340px){.live{gap:10px;font-size:.82rem}.live .day{letter-spacing:.12em;font-size:.85rem}}
+@media (max-width:420px){.live{flex-direction:column;gap:6px}.live i{display:none}.live .day{font-size:.9rem;letter-spacing:.16em}}
+@media (max-width:340px){.live{font-size:.84rem}.live .day{letter-spacing:.1em;font-size:.85rem}}
 @media (max-width:300px){.tx b{letter-spacing:.03em}}
 /* telas baixas (celular deitado, janelas pequenas): topo mais compacto */
 @media (max-height:560px){body{padding-top:20px}.avatar{width:64px;height:64px;border-width:3px;margin-bottom:14px}.head{margin-bottom:18px}.slogan{margin-top:10px}.live{margin-top:12px}.list{gap:8px}.item{padding:9px 14px}.item.primary{padding:12px 14px}.foot{margin-top:22px}}
